@@ -23,7 +23,7 @@ Modern supply chains suffer from three chronic pain points:
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        SupplyChainPulse                         │
-├──────────────┬──────────────────┬──────────────────────────────┤
+├──────────────┬──────────────────┬───────────────────────────────┤
 │  Data Layer  │  Analytics Layer │       Presentation Layer      │
 │              │                  │                               │
 │  data/       │  sql/            │  app.py  (Streamlit)          │
@@ -35,7 +35,7 @@ Modern supply chains suffer from three chronic pain points:
 │  (CSV / DB)  │  inventory_      │                               │
 │              │  optimizer.py    │  Plotly charts + KPI tiles    │
 │              │  (Python + ML)   │                               │
-└──────────────┴──────────────────┴──────────────────────────────┘
+└──────────────┴──────────────────┴───────────────────────────────┘
 ```
 
 **Data flow:**
@@ -200,10 +200,4 @@ Dialect: ANSI SQL — tested compatible with **PostgreSQL**, **BigQuery**, **Sno
 
 ---
 
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-<p align="center">Built with ❤️ by the Supply Chain Analytics Team</p>
+<p align="center">Built with ❤️ by the Supply Chain Analytst </p>
