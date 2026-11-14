@@ -1,0 +1,6 @@
+Warehouse_ID,Location,Capacity
+WH-001,"Chicago, IL",50000
+WH-002,"Dallas, TX",75000
+WH-003,"Atlanta, GA",40000
+WH-004,"Los Angeles, CA",90000
+WH-005,"Seattle, WA",35000
