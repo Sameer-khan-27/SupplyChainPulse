@@ -200,4 +200,4 @@ Dialect: ANSI SQL — tested compatible with **PostgreSQL**, **BigQuery**, **Sno
 
 ---
 
-<p align="center">Built with ❤️ by the Supply Chain Analytst </p>
+<p align="center">Built with ❤️ by the Supply Chain Analyst </p>
