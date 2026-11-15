@@ -144,7 +144,7 @@ This prints supplier OTIF tables, risk flags, and a demand forecast preview dire
 ### 6. Launch the Streamlit dashboard
 
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
 Open **http://localhost:8501** in your browser.
