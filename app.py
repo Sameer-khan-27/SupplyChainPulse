@@ -378,7 +378,7 @@ elif page == "Supplier Analytics":
         }.get(val, "")
 
     st.dataframe(
-        display_lt.style.map(_color_risk, subset=["Risk Tier"]),
+      display_lt.style.map(_color_risk, subset=["Risk Tier"]),
         use_container_width=True,
         hide_index=True,
     )

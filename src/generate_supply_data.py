@@ -20,13 +20,9 @@ SEED = 42
 random.seed(SEED)
 np.random.seed(SEED)
 
-# ── Output directories ─────────────────────────────────────────────────────────
-# Primary output: data/ (read by the dashboard and optimizer)
-# Mirror output:  data/raw/ (canonical raw-data landing zone)
-DATA_DIR     = Path(__file__).resolve().parent.parent / "data"
-RAW_DATA_DIR = DATA_DIR / "raw"
+# ── Output directory ───────────────────────────────────────────────────────────
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
-RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # ── 1. Warehouses ──────────────────────────────────────────────────────────────
@@ -130,39 +126,31 @@ def generate_daily_inventory_logs(
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
-def _write(df: pd.DataFrame, filename: str) -> None:
-    """Write df to both data/ and data/raw/ atomically."""
-    df.to_csv(DATA_DIR     / filename, index=False)
-    df.to_csv(RAW_DATA_DIR / filename, index=False)
-
-
 def main() -> None:
     print("Generating warehouses.csv …")
     wh_df = generate_warehouses()
-    _write(wh_df, "warehouses.csv")
+    wh_df.to_csv(DATA_DIR / "warehouses.csv", index=False)
 
     print("Generating sku_catalog.csv …")
     sku_df = generate_sku_catalog()
-    _write(sku_df, "sku_catalog.csv")
+    sku_df.to_csv(DATA_DIR / "sku_catalog.csv", index=False)
 
     print("Generating supplier_shipments.csv …")
     ship_df = generate_supplier_shipments(sku_df["SKU_ID"].tolist())
-    _write(ship_df, "supplier_shipments.csv")
+    ship_df.to_csv(DATA_DIR / "supplier_shipments.csv", index=False)
 
     print("Generating daily_inventory_logs.csv …")
     log_df = generate_daily_inventory_logs(
         wh_df["Warehouse_ID"].tolist(),
         sku_df["SKU_ID"].tolist(),
     )
-    _write(log_df, "daily_inventory_logs.csv")
+    log_df.to_csv(DATA_DIR / "daily_inventory_logs.csv", index=False)
 
-    print(f"\n✓ All 4 datasets written to:")
-    print(f"    {DATA_DIR}")
-    print(f"    {RAW_DATA_DIR}")
-    print(f"  warehouses.csv           → {len(wh_df):,} rows")
-    print(f"  sku_catalog.csv          → {len(sku_df):,} rows")
-    print(f"  supplier_shipments.csv   → {len(ship_df):,} rows")
-    print(f"  daily_inventory_logs.csv → {len(log_df):,} rows")
+    print(f"\n✓ All 4 datasets written to: {DATA_DIR}")
+    print(f"  warehouses.csv          → {len(wh_df):,} rows")
+    print(f"  sku_catalog.csv         → {len(sku_df):,} rows")
+    print(f"  supplier_shipments.csv  → {len(ship_df):,} rows")
+    print(f"  daily_inventory_logs.csv→ {len(log_df):,} rows")
 
 
 if __name__ == "__main__":
